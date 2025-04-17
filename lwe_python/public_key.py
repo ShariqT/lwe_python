@@ -73,7 +73,7 @@ class PublicKey:
   
 
   def save_to_keyfile(self, keyfile_path):
-    fp = open(os.path.join(keyfile_path, "pub.lwe.key"))
+    fp = open(os.path.join(keyfile_path, "pub.lwe.key"), "w")
     results = self.to_json()
     fp.write(results)
     fp.close()
