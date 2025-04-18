@@ -97,7 +97,7 @@ def test_loads_valid_JSON_key_file():
 
 
 def test_public_key_loads_keyfile(public_key_file):
-  key = PublicKey.load_key_file("./pub.lwe.key")
+  key = PublicKey.load_keyfile("./pub.lwe.key")
   assert key.number_of_equations == 13
   assert key.A() == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   assert key.B() == [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ]
@@ -122,7 +122,8 @@ def test_save_private_key_info(save_keyfile):
   priv_key = PrivateKey(100)
   priv_key.save_to_keyfile("./")
   content = json.dumps({
-    "sec": 100
+    "sec": 100,
+    "mod": None
   })
   save_keyfile().write.assert_called_once_with(content)
 
@@ -153,6 +154,12 @@ def test_encrypt_string_function_works():
   data = encrypt_string("hi", pub_key)
   final = decrypt_data(data, priv_key)
   assert final == "hi"
+
+  data = encrypt_string(json.dumps({"hello": "world"}), pub_key)
+  final = decrypt_data(data, priv_key)
+  final = json.loads(final)
+  assert final["hello"] == "world"
+
 
 
 

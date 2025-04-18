@@ -24,7 +24,12 @@ def encrypt_string(string_to_encrypt, public_key):
 def decrypt_data(encrypted_data, private_key):
   result = []
   for x in range(0, len(encrypted_data)):
-    result.append(decrypt_bit(private_key, encrypted_data[x]))
+    print(f"encrypted data is {type(encrypted_data[x]) == dict}")
+    if (type(encrypted_data[x])  == list):
+      for y in encrypted_data[x]:
+        result.append(decrypt_bit(private_key, y))
+    else:
+      result.append(decrypt_bit(private_key, encrypted_data[x]))
   result = bitarray(result)
   result = result.tobytes()
   return result.decode('utf-8')
@@ -46,6 +51,7 @@ def encrypt_bit(public_key, bit):
 
 
 def decrypt_bit(private_key, encrypted_data):
+  print(f"encrypted data is {encrypted_data}")
   bit_check = math.floor(private_key.modulus / 2)
   value_from_vector = encrypted_data["v"] - private_key.secret * encrypted_data["u"]
   dec = value_from_vector % private_key.modulus

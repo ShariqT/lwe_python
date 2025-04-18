@@ -24,7 +24,8 @@ class PrivateKey():
   def save_to_keyfile(self, keyfile_path):
     fp = open(os.path.join(keyfile_path, "sec.lwe.key"), "w")
     data = json.dumps({
-      "sec": self.secret
+      "sec": self.secret,
+      "mod": self.modulus
     })
     fp.write(data)
     fp.close()
