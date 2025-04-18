@@ -8,6 +8,18 @@ class PrivateKey():
     if modulus is not None:
       self.modulus = modulus
 
+  @classmethod
+  def loadJSON(cls, json_data):
+    data = json.loads(json_data)
+    key = cls(data['mod'])
+    return key
+  
+  @classmethod
+  def load_keyfile(cls, keyfile_path):
+    fp = open(keyfile_path)
+    data = fp.read()
+    fp.close()
+    return cls.loadJSON(data)
 
   def save_to_keyfile(self, keyfile_path):
     fp = open(os.path.join(keyfile_path, "sec.lwe.key"), "w")

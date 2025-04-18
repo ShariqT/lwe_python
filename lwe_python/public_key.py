@@ -22,7 +22,7 @@ class PublicKey:
     return key
   
   @classmethod
-  def load_key_file(cls, keyfile_path):
+  def load_keyfile(cls, keyfile_path):
     fp = open(keyfile_path)
     data = fp.read()
     fp.close()

@@ -53,10 +53,10 @@ priv_key.save_to_keyfile()
 
 
 # create a PublicKey instance from a pub.lwe.key file
-PublicKey.load_from_keyfile("pub.lwe.key")
+PublicKey.load_keyfile("pub.lwe.key")
 
 # create a PrivatecKey instance from a pub.lwe.key file
-PrivateKey.load_from_keyfile("sec.lwe.key")
+PrivateKey.load_keyfile("sec.lwe.key")
 
 # load a PublicKey from JSON data 
 PublicKey.loadJSON(keydata)
