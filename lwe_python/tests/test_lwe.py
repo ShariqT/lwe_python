@@ -127,6 +127,12 @@ def test_save_private_key_info(save_keyfile):
   })
   save_keyfile().write.assert_called_once_with(content)
 
+def test_private_key_loads_keyfile():
+  priv = PrivateKey.load_keyfile("./test.sec.lwe.key")
+  assert priv.secret == 100
+  assert priv.modulus == 1
+
+
 
 def test_encrypt_decrypt_bit_works():
   secret_value = 5

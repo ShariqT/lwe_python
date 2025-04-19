@@ -11,7 +11,7 @@ class PrivateKey():
   @classmethod
   def loadJSON(cls, json_data):
     data = json.loads(json_data)
-    key = cls(data['mod'])
+    key = cls(data['sec'], data['mod'])
     return key
   
   @classmethod
